@@ -1,0 +1,2 @@
+I mostly know how to make crud/RESTful API apps. For the Arkham Horror app, users won't need to create, update, or delete cards.
+How should I structure  the app if not as an API?

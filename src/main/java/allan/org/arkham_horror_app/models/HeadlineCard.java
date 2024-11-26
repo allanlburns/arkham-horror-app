@@ -1,4 +1,4 @@
 package allan.org.arkham_horror_app.models;
 
-public class HeadlineCard {
+public class HeadlineCard extends Card {
 }

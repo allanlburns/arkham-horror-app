@@ -1,4 +1,4 @@
 package allan.org.arkham_horror_app.models;
 
-public class MonsterCard {
+public class MonsterCard extends Card {
 }

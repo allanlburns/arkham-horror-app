@@ -1,4 +1,4 @@
 package allan.org.arkham_horror_app.models;
 
-public class EventDeck {
+public class EventDeck extends Deck {
 }
