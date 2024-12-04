@@ -1,9 +1,6 @@
 package allan.org.arkham_horror_app.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ArchiveCard extends Card{
@@ -12,14 +9,21 @@ public class ArchiveCard extends Card{
     private Long id;
 
     private int number;
-    private String text;
-    private String flipCondition;
+    private String title;
+    @Column(columnDefinition = "TEXT")
+    private String flavorText;
+    @Column(columnDefinition = "TEXT")
+    private String effect;
+    @Column(columnDefinition = "TEXT")
+    private String flippedEffect;
 
-    public ArchiveCard(Long id, int number, String flipCondition, String text) {
+    public ArchiveCard(Long id, int number, String title, String flavorText, String effect, String flippedEffect) {
         this.id = id;
         this.number = number;
-        this.flipCondition = flipCondition;
-        this.text = text;
+        this.title = title;
+        this.flavorText = flavorText;
+        this.effect = effect;
+        this.flippedEffect = flippedEffect;
     }
 
     public Long getId() {
@@ -38,20 +42,36 @@ public class ArchiveCard extends Card{
         this.number = number;
     }
 
-    public String getFlipCondition() {
-        return flipCondition;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFlipCondition(String flipCondition) {
-        this.flipCondition = flipCondition;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getEffect() {
+        return effect;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
+    public String getFlippedEffect() {
+        return flippedEffect;
+    }
+
+    public void setFlippedEffect(String flippedEffect) {
+        this.flippedEffect = flippedEffect;
+    }
+
+    public String getFlavorText() {
+        return flavorText;
+    }
+
+    public void setFlavorText(String flavorText) {
+        this.flavorText = flavorText;
     }
 
     @Override
@@ -59,8 +79,10 @@ public class ArchiveCard extends Card{
         return "ArchiveCard{" +
                 "id=" + id +
                 ", number=" + number +
-                ", text='" + text + '\'' +
-                ", flipCondition='" + flipCondition + '\'' +
+                ", title='" + title + '\'' +
+                ", flavorText='" + flavorText + '\'' +
+                ", effect='" + effect + '\'' +
+                ", flippedEffect='" + flippedEffect + '\'' +
                 '}';
     }
 }
