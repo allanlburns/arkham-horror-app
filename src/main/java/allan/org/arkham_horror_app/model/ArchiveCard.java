@@ -1,4 +1,4 @@
-package allan.org.arkham_horror_app.models;
+package allan.org.arkham_horror_app.model;
 
 import jakarta.persistence.*;
 
