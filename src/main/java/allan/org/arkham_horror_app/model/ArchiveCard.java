@@ -1,6 +1,7 @@
 package allan.org.arkham_horror_app.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 public class ArchiveCard extends Card{
@@ -24,6 +25,10 @@ public class ArchiveCard extends Card{
         this.flavorText = flavorText;
         this.effect = effect;
         this.flippedEffect = flippedEffect;
+    }
+
+    public ArchiveCard() {
+
     }
 
     public Long getId() {
