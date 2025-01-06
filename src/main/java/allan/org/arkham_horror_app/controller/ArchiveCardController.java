@@ -14,7 +14,7 @@ import java.util.List;
 public class ArchiveCardController {
 
     @Autowired
-    private ArchiveCardService archiveCardService
+    private ArchiveCardService archiveCardService;
 
     @GetMapping("/")
     public String greet() {
