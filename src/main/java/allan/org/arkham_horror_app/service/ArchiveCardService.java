@@ -9,10 +9,15 @@ import java.util.List;
 
 @Service
 public class ArchiveCardService {
+
     @Autowired
     private ArchiveCardRepository archiveCardRepository;
 
     public List<ArchiveCard> getAllArchiveCards() {
         return archiveCardRepository.findAll();
+    }
+
+    public ArchiveCard getArchiveCardByNum(int number) {
+        return archiveCardRepository.findByNumber(number);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class ArchiveCardController {
     @GetMapping("/archiveCards")
     public ResponseEntity<List<ArchiveCard>> getArchiveCards() {
         return new ResponseEntity<>(archiveCardService.getAllArchiveCards(), HttpStatus.OK);
+    }
+
+    @GetMapping("/archiveCard/{number}")
+    public ResponseEntity<ArchiveCard> getArchiveCard(@PathVariable int number) {
+        return new ResponseEntity<ArchiveCard>(archiveCardService.getArchiveCardByNum(number), HttpStatus.OK);
     }
 
 }
