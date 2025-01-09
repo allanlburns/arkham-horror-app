@@ -5,9 +5,7 @@ import allan.org.arkham_horror_app.service.ArchiveCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +28,24 @@ public class ArchiveCardController {
     @GetMapping("/archiveCard/{number}")
     public ResponseEntity<ArchiveCard> getArchiveCard(@PathVariable int number) {
         return new ResponseEntity<ArchiveCard>(archiveCardService.getArchiveCardByNum(number), HttpStatus.OK);
+    }
+
+    // Methods for Codex
+    @PostMapping("/codex/cards/{cardNumber}")
+    public ResponseEntity<Void> addToCodex(@PathVariable int cardNumber) {
+        archiveCardService.addToCodex(cardNumber);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/codex/cards/{cardNumber}")
+    public ResponseEntity<Void> removeFromCodex(@PathVariable int cardNumber) {
+        archiveCardService.removeFromCodex(cardNumber);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/codex/cards")
+    public ResponseEntity<List<ArchiveCard>> getCodexCards() {
+        return ResponseEntity.ok(archiveCardService.getCodexCards());
     }
 
 }

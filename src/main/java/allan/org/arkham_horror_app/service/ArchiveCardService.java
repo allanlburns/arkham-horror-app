@@ -20,4 +20,21 @@ public class ArchiveCardService {
     public ArchiveCard getArchiveCardByNum(int number) {
         return archiveCardRepository.findByNumber(number);
     }
+
+    // Service methods for Codex
+    public void addToCodex(int cardNumber) {
+        ArchiveCard card = getArchiveCardByNum(cardNumber);
+        card.setInCodex(true);
+        archiveCardRepository.save(card);
+    }
+
+    public void removeFromCodex(int cardNumber) {
+        ArchiveCard card = getArchiveCardByNum(cardNumber);
+        card.setInCodex(false);
+        archiveCardRepository.save(card);
+    }
+
+    public List<ArchiveCard> getCodexCards() {
+        return archiveCardRepository.findByInCodexTrue();
+    }
 }

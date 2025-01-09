@@ -17,6 +17,9 @@ public class ArchiveCard extends Card{
     private String effect;
     @Column(columnDefinition = "TEXT")
     private String flippedEffect;
+    // Codex
+    @Column(nullable = false)
+    private boolean inCodex = false;
 
     public ArchiveCard(Long id, int number, String title, String flavorText, String effect, String flippedEffect) {
         this.id = id;
@@ -25,6 +28,7 @@ public class ArchiveCard extends Card{
         this.flavorText = flavorText;
         this.effect = effect;
         this.flippedEffect = flippedEffect;
+        this.inCodex = false;
     }
 
     public ArchiveCard() {
@@ -89,5 +93,14 @@ public class ArchiveCard extends Card{
                 ", effect='" + effect + '\'' +
                 ", flippedEffect='" + flippedEffect + '\'' +
                 '}';
+    }
+
+    // Logic for Codex
+    public boolean isInCodex() {
+        return inCodex;
+    }
+
+    public void setInCodex(boolean inCodex) {
+        this.inCodex = inCodex;
     }
 }
