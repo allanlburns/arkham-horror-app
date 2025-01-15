@@ -1,13 +1,3 @@
-CREATE TABLE IF NOT EXISTS archive_card (
-    id SERIAL PRIMARY KEY,
-    number INT NOT NULL,
-    title VARCHAR(255),
-    flavor_text TEXT,
-    effect TEXT,
-    flipped_effect TEXT,
-    in_codex BOOLEAN NOT NULL DEFAULT FALSE
-);
-
 INSERT INTO archive_card (id, number, title, flavor_text, effect, flipped_effect, in_codex)
 SELECT * FROM (VALUES
     (1, 1, 'Outbreak', 'Windows are shut, curtains drawn, doors locked. Citizens hurry...', 'If a space has four or more doom, remove three doom from that space. Then place one doom in each other space in that neighborhood and one doom on the scenario sheet.', NULL, false),
