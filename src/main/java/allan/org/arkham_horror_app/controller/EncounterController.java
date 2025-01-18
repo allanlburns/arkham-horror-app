@@ -26,6 +26,4 @@ public class EncounterController {
     public ResponseEntity<List<EncounterCard>> getArchiveCard(@PathVariable String neighborhood) {
         return new ResponseEntity<>(encounterCardService.getEncounterCardsByNeighborhood(neighborhood), HttpStatus.OK);
     }
-
-
 }

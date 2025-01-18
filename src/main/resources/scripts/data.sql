@@ -136,3 +136,27 @@ SELECT * FROM (VALUES
     (52, 'Uptown', 'Archive16', 'Hangman''s Hill', 'St. Mary''s Hospital', 'Ye Olde Magick Shoppe', 'Robed figures meet in the cemetery (Test WILLPOWER). If you pass, you find something they leave behind; you gain one COMMON item. Whether you pass or not, you watch as one of them returns to the hospital; spawn the set-aside Ruth Turner monster at St. Mary''s Hospital and return this card to the archive.', 'You finally get the exhausted Nurse Sharon''s attention. You may spend $1 to recover three health. You sneak into the morgue and watch the mortician load a body into an unmarked car. Spawn the set-aside Ruth Turner monster at St. Mary''s Hospital and return this card to the archive.', 'You find a copy of ''Cult des Goules''. Look at the top three spells in the deck. You may spend $3 to gain one of them. Put the rest on the bottom of the deck. You''re not the first person to read that book. Spawn the set-aside Ruth Turner monster at St. Mary''s Hospital and return this card to the archive.', 'Core'),
     (53, 'Southside', 'Archive17', 'Historical Society', 'Ma''s Boarding House', 'South Church', 'The curator seems distracted (Test INFLUENCE). If you pass, you get access to the collection; you gain one CURIO item. Whether you pass or not, historian Alma Hill is watching you with naked contempt; spawn the set-aside Alma Hill monster at the Historical Society and return this card to the archive.', 'Ma''s got a free seat for dinner. You may spend $1 to recover three health. "Ms. Hill keeps a room here," Ma explains, "but she''s been acting oddly these past few weeks. Spends all her time at the museum." Spawn the set-aside Alma Hill monster at the Historical Society and return this card to the archive.', 'There''s another funeral tonight, with a donation box for the family. You may spend $1 to recover three sanity. You notice a suspicious woman in the crowd. She slips out when she sees you. Spawn the set-aside Alma Hill monster at the Historical Society and return this card to the archive.', 'Core')
 );
+
+--  Create event_card table
+
+CREATE TABLE IF NOT EXISTS event_card (
+    id SERIAL PRIMARY KEY,
+    number VARCHAR(255),
+    scenario VARCHAR(255),
+    neighborhood VARCHAR(255),
+    location1 VARCHAR(255),
+    location2 VARCHAR(255),
+    location3 VARCHAR(255),
+    location1Text TEXT,
+    location2Text TEXT,
+    location3Text TEXT,
+    unstableSpace VARCHAR(255),
+    gameSet VARCHAR(255)
+);
+
+--  Add Event Cards for Feast for Umordhoth to event_card
+
+INSERT INTO event_card (id, number, scenario, neighborhood, location1, location2, location3, location1Text, location2Text, location3Text, unstableSpace, gameSet)
+SELECT * FROM (VALUES
+    (1, '5/24', 'Feast for Umordhoth', 'Easttown', 'Hibb''s Roadhouse', 'Police Station', 'Velma''s Diner', 'Patrons are upset about grave robberies and are recounting stories of their departed relatives. You gain one clue from your neighborhood. If you buy a few drinks for guests, they begin to share cherished memories that comfort you. You may spend $1 for you or an ally to recover three sanity.', 'A pile of evidence has been confiscated from a ring of grave robbers. You attempt to stealthily acquire their findings (Test OBSERVATION). If you pass, you gain one COMMON item and one clue from your neighborhood. If you fail, you are caught and questioned extensively; you become delayed.', 'The food smells foul but it is surprisingly invigorating. You or an ally recovers two health. You try to identify the source of the smell (Test OBSERVATION). If you pass, the scent is coming from the water pipes; you gain one clue from your neighborhood. If you fail, you can''t find the source and decide to leave.', 'Hibb''s Roadhouse', 'Core')
+);
