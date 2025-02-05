@@ -1,10 +1,8 @@
 package allan.org.arkham_horror_app.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
 public class EventCard extends Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +21,10 @@ public class EventCard extends Card {
     @Column(columnDefinition = "TEXT")
     private String location3Text;
     private String unstableSpace;
-    private String gameSet;
+    private String gameset;
 
 
-    public EventCard(Long id, String number, String scenario, String neighborhood, String location1, String location2, String location3, String location1Text, String location2Text, String location3Text, String unstableSpace, String gameSet) {
+    public EventCard(Long id, String number, String scenario, String neighborhood, String location1, String location2, String location3, String location1Text, String location2Text, String location3Text, String unstableSpace, String gameset) {
         this.id = id;
         this.number = number;
         this.scenario = scenario;
@@ -38,7 +36,7 @@ public class EventCard extends Card {
         this.location2Text = location2Text;
         this.location3Text = location3Text;
         this.unstableSpace = unstableSpace;
-        this.gameSet = gameSet;
+        this.gameset = gameset;
     }
 
     public EventCard() {
@@ -133,10 +131,10 @@ public class EventCard extends Card {
     }
 
     public String getGameSet() {
-        return gameSet;
+        return gameset;
     }
 
     public void setGameSet(String gameSet) {
-        this.gameSet = gameSet;
+        this.gameset = gameSet;
     }
 }
