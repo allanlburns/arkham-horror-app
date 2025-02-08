@@ -196,3 +196,28 @@ SELECT * FROM (VALUES
     (28, '4/24', 'Approach of Azathoth', 'Easttown', 'Hibb''s Roadhouse', 'Police Station', 'Velma''s Diner', 'loc1Text', 'loc2Text', 'loc3Text', 'Velma''s Diner', 'Core'),
     (29, '5/24', 'Approach of Azathoth', 'Downtown', 'Arkham Asylum', 'Independence Square', 'La Bella Luna', 'loc1Text', 'loc2Text', 'loc3Text', 'Independence Square', 'Core')
 );
+
+--  Create headline_card table
+
+ CREATE TABLE IF NOT EXISTS headline_card (
+     id SERIAL PRIMARY KEY,
+     number VARCHAR(255),
+     type VARCHAR(255),
+     headline VARCHAR(255),
+     flavorText TEXT,
+     reckoningEffect TEXT,
+     effect TEXT,
+     gameSet VARCHAR(255)
+ );
+
+--  Add Headline Cards to headline_card
+
+INSERT INTO headline_card (id, number, type, headline, flavorText, reckoningEffect, effect, gameSet)
+SELECT * FROM (VALUES
+    (1, '1', 'Headline', 'WE HAVE NO ONE TO BLAME BUT OURSELVES', 'Opinion: Our choices have placed us on this path. New civic engagement required. Advertiser deserves its share of blame. By Doyle Jeffries, editor in chief. Arkham, Mass.', NULL, 'Place two doom in your space unless you gain a DARK PACT condition. (If you are in a street space, place the doom in an adjacent neighborhood space instead.)', 'Core'),
+    (2, '2', 'Headline', '"CURSED" TREASURE BRINGS MONEY, PROBLEMS', 'This money is the root of all evil. Treasure once belonged to pirate. Marsh family of Innsmouth claims treasure is theirs. By Rex Murphy, staff writer. Arkham, Mass.', NULL, 'Test WILLPOWER and resolve the effect based on your test result: 0: You become CURSED. 1-2: You gain $3 and become CURSED. 3+: You gain $3.', 'Core'),
+    (3, '3', 'Headline', 'MYSTICISM MALFEASANCE', 'Occultism craze sweeps Arkham. Police warn mos "mediums" frauds. Beecher boasts magic "very real". By Rex Murphy, staff writer. Arkham, Mass.', NULL, 'Test WILLPOWER - 1. If you fail, place one doom in your space. (If you are in a street space, place the doom in an adjacent neighborhood space instead.)', 'Core'),
+    (4, '4', 'Headline', 'MISKATONIC MUSEUM MYSTERY', 'Items stolen from rare exhibit. Police stumped. Crazed curator calls curios cursed. By A. Wong, Associated Press. Arkham, Mass.', NULL, 'Test WILLPOWER and resolve the effect based on your test result: 0: You become CURSED. 1-2: You gain one CURIO item and become CURSED. 3+: You gain one CURIO item.', 'Core'),
+    (5, '5', 'Headline', 'CONCERNED CITIZENS CONGREGATE', 'Civic leaders praise volunteerism. No action on missing persons, murders. By Minnie Klein, staff writer. Arkham, Mass.', NULL, 'Test INFLUENCE and resolve the effect based on your result: 0: you place one doom in your space. 1-2: You gain one ally and place one doom in your space. 3+: You gain one ally. (If you are in a street space, place the doom in an adjacent neighborhood space instead.)', 'Core'),
+    (6, '6', 'Headline', 'CHURCH LEADERS BLESS CITY', 'Catholic, Protestant, Greek, Jewish faith leaders unite. Response to sightings of "demons", Satanic rites. By Amelia Baxter, United Press.', NULL, 'Test WILLPOWER and resolve the effect based on your test result: 0: Spawn one monster in your space. 1-2: You become BLESSED. Spawn one monster in your space. 3+: You become BLESSED. (The monster engages you or another investigator in your space.)', 'Core')
+);
