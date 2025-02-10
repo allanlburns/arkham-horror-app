@@ -29,6 +29,9 @@ public class HeadlineCard extends Card {
         this.gameset = gameset;
     }
 
+    public HeadlineCard() {
+    }
+
     public Long getId() {
         return id;
     }
