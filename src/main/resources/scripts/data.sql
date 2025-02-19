@@ -247,3 +247,68 @@ SELECT * FROM (VALUES
     (31, 31, 'Rumor', 'ASTRONOMERS CHUFFED AS STARS ALIGN', '"One thousand years in the making." Stars, planets in unique configuration. No cause for alarm, authorities say. By A.P. Jessup, staff writer. Arkham, Mass.', 'Each investigator tests WILLPOWER. Each investigator who fails places one doom in their space. Then any investigator may spend one clue to discard this card.', 'Add this card to the codex and discard all other rumor headlines.', 'Core'),
     (32, 32, 'Rumor', 'ROGUE COMET APPROACHES', 'Comet never before detected by science. Will pass within one million miles of Earth. "Absolutely no danger" says MU prof. By Rex Murphy, staff writer. Arkham, Mass.', 'Any investigator may spend one clue to discard this card. Otherwise, place one doom on this card.', 'Add this card to the codex and discard all other rumor headlines. When there is three doom on this card, resolve a gate burst mythos effect. Then discard this card.', 'Core')
 );
+
+--  Create monster_card table
+
+CREATE TABLE IF NOT EXISTS monster_card (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    health VARCHAR(255),
+    attackModifier VARCHAR(255),
+    evadeModifier VARCHAR(255),
+    remnant BOOLEAN NOT NULL DEFAULT FALSE,
+    spawnText VARCHAR(255),
+    activationText VARCHAR(255),
+    speed VARCHAR(255),
+    damage VARCHAR(255),
+    horror VARCHAR(255),
+    text VARCHAR(255)
+);
+
+INSERT INTO monster_card (id, name, type, health, attackModifier, evadeModifier, remnant, spawnText, activationText, speed, damage, horror, text)
+SELECT * FROM (VALUES
+    (1, 'Abyssal Servant', 'Nightgaunt', '4', '-1', '-2', true, 'Spawn at street nearest prey.', 'Hunter--Move toward and engage investigator with most clues.', '2', '1', '2', 'After you fail to evade this monster, you disengage other monsters and both you and it move one space toward the unstable space.'),
+    (2, 'Corpse-Taker', 'Aberration', '2 + 1 per each investigator', '-2', '-1', true, 'Spawn at most doom.', 'Lurker--Move one doom from this space to the scenario sheet.', '-', '2', '2', 'Elite 1 (Has 1 additional health per investigator.)'),
+    (3, 'Eyeless Watcher', 'Nightgaunt', '3', '0', '-2', true, 'Spawn at unstable space.', 'Hunter--Move toward and engage lowest INFLUENCE.', '2', '0', '1', 'Watcher (This monster does not restrict your actions or encounters. It moves with you.)'),
+    (4, 'Hooded Stalker', 'Human Cultist', '1', '0', '-1', false, 'Spawn at most doom.', 'Hunter--Move toward and engage lowest STRENGTH.', '2', '1', '0', '"Hello, friend. What are you doing out here so late at night, and all alone, too?"'),
+    (5, 'Hooded Stalker', 'Human Cultist', '1', '0', '-1', false, 'Spawn at most doom', 'Hunter--Move toward and engage lowest STRENGTH.', '2', '1', '0', '"Hello, friend. What are you doing out here so late at night, and all alone, too?"'),
+    (6, 'Masked Ones', 'Human Cultist', '2 + 1 per each investigator', '0', '-2', false, 'Spawn at most doom.', 'Lurker--Place one doom in this space.', '-', '0', '1', 'Elite 1 (Has 1 additional health per investigator.) After this monster attacks, you suffer two damage unless you place one doom in your space.'),
+    (7, 'Ghoul Acolyte', 'Ghoul Cultist', '2', '0', '-1', true, 'Spawn at unstable space.', 'Lurker--Place one doom at unstable space.', '-', '1', '1', 'After you evade this monster, it moves one space toward the unstable space.'),
+    (8, 'Ghoul Acolyte', 'Ghoul Cultist', '2', '0', '-1', true, 'Spawn at unstable space.', 'Lurker--Place one doom at unstable space.', '-', '1', '1', 'After you evade this monster, it moves one space toward the unstable space.'),
+    (9, 'Vicious Glutton', 'Ghoul', '2', '-1', '+1', true, 'Spawn at unstable space.', 'Patrol--Move toward most doom. Engage lowest WILLPOWER.', '2', '1', '1', 'The creature looks up, still licking clotted blood from its white fangs.'),
+    (10, 'Vicious Glutton', 'Ghoul', '2', '-1', '+1', true, 'Spawn at unstable space.', 'Patrol--Move toward most doom. Engage lowest WILLPOWER.', '2', '1', '1', 'The creature looks up, still licking clotted blood from its white fangs.'),
+    (11, 'Nightmarish Fiend', 'Ghoul', '4', '-1', '-1', true, 'Spawn at street nearest prey.', 'Hunter--Move toward and engage lowest WILLPOWER.', '2', '2', '2', 'Feed (After this monster deals damage to an investigator or ally, it recovers that much health.)'),
+    (12, 'Ghoul Priest', 'Ghoul Cultist', '4', '-1', '-1', true, 'Spawn at most doom.', 'Lurker--Each investigator suffers one damage.', '-', '2', '1', 'Reward--After you defeat this monster as part of an attack action, you gain one CURIO item.'),
+    (13, 'Flesh-Eater', 'Ghoul', '2', '0', '0', true, 'Spawn at unstable space.', 'Hunter--Move toward and engage highest STRENGTH.', '2', '1', '1', 'There''s a wet crunching sound and the thing''s shoulders quiver as it tears flesh from the bone.'),
+    (14, 'Flesh-Eater', 'Ghoul', '2', '0', '0', true, 'Spawn at unstable space.', 'Hunter--Move toward and engage highest STRENGTH.', '2', '1', '1', 'There''s a wet crunching sound and the thing''s shoulders quiver as it tears flesh from the bone.'),
+    (15, 'Creeping Ghoul', 'Ghoul', '3', '-1', '0', true, 'Spawn at unstable space.', 'Patrol--Move toward unstable space. Engage highest LORE.', '2', '2', '1', 'Something moves in the shadows. There''s a crash and a low growl, and then a cat streaks past you. Just a scared cat... and the stink of the grave.')
+);
+
+--  Create monster_card table
+
+CREATE TABLE IF NOT EXISTS special_monster_card (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    health VARCHAR(255),
+    attackModifier VARCHAR(255),
+    evadeModifier VARCHAR(255),
+    remnant BOOLEAN NOT NULL DEFAULT FALSE,
+    spawnText VARCHAR(255),
+    activationText VARCHAR(255),
+    speed VARCHAR(255),
+    damage VARCHAR(255),
+    horror VARCHAR(255),
+    text VARCHAR(255)
+);
+
+INSERT INTO special_monster_card (id, name, type, health, attackModifier, evadeModifier, remnant, spawnText, activationText, speed, damage, horror, text)
+SELECT * FROM (VALUES
+    (16, 'Alma Hill', 'Human Cultist', '3', '0', '-1', false, NULL, 'Lurker--Leader draws two tokens from the mythos cup.', '-', '0', '2', 'Elusive (Alma does not engage investigators in her space.) After you defeat Alma, test LORE. If you fail, you draw two tokens from the mythos cup.'),
+    (17, 'Billy Cooper', 'Human Cultist', '3', '-1', '-1', false, NULL, 'Lurker--Place one doom at the police station.', '-', '2', '0', 'If you defeat another monster while engaged with Billy, he is also defeated.'),
+    (18, 'Herman Collins', 'Human Cultist', '3', '-1', '-1', false, NULL, 'Lurker--Each investigator discards one focus.', '-', '1', '1', 'After you perform a focus action while engaged with Herman, you may spend two focus to defeat him.'),
+    (19, 'Masked Hunter', 'Human Cultist', '2 + 1 per each investigator', '-2', '0', false, NULL, 'Hunter--Move toward and engage investigator with most clues.', '2', '2', '1', 'Elite 1 (Has 1 additional health per investigator.) He never speaks, never slows, never stops, never hesitates. He only hunts. And he''s closing in.'),
+    (20, 'Ruth Turner', 'Human Cultist', '3', '0', '-2', false, NULL, 'Lurker--Place one doom at Hangman''s Hill.', '-', '1', '0', 'Elusive (Ruth does not engage investigators in her space.) After you disengage Ruth, she is defeated.'),
+    (21, '"Wolf-Man" Drew', 'Human Cultist', '3', '-1', '0', false, NULL, 'Hunter--Move toward and engage lowest STRENGTH.', '2', '2', '0', 'Feed (After Drew deals damage to an investigator or ally, he recovers that much health.)')
+);
