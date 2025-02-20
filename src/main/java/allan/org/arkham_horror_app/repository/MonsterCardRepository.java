@@ -1,4 +1,10 @@
 package allan.org.arkham_horror_app.repository;
 
-public interface MonsterCardRepo {
+import allan.org.arkham_horror_app.model.MonsterCard;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MonsterCardRepository extends JpaRepository<MonsterCard, Long> {
+    MonsterCard getMonsterCardByName(String name);
 }
