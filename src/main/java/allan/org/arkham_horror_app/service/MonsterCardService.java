@@ -20,4 +20,8 @@ public class MonsterCardService {
     public MonsterCard getMonsterCardByName(String name) {
         return monsterCardRepository.getMonsterCardByName(name);
     }
+
+    public List<MonsterCard> getMonsterCardByType(String type) {
+        return monsterCardRepository.getMonsterCardByType(type);
+    }
 }

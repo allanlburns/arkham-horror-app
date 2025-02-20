@@ -22,8 +22,13 @@ public class MonsterCardController {
         return new ResponseEntity<>(monsterCardService.getAllMonsterCards(), HttpStatus.OK);
     }
 
-    @GetMapping("/monsterCard/{name}")
+    @GetMapping("/monsterCard/name/{name}")
     public ResponseEntity<MonsterCard> getMonsterCardByName(@PathVariable String name) {
         return new ResponseEntity<>(monsterCardService.getMonsterCardByName(name), HttpStatus.OK);
+    }
+
+    @GetMapping("/monsterCard/type/{type}")
+    public ResponseEntity<List<MonsterCard>> getMonsterCardByType(@PathVariable String type) {
+        return new ResponseEntity<>(monsterCardService.getMonsterCardByType(type), HttpStatus.OK);
     }
 }
