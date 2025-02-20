@@ -22,6 +22,6 @@ public class MonsterCardService {
     }
 
     public List<MonsterCard> getMonsterCardByType(String type) {
-        return monsterCardRepository.getMonsterCardByType(type);
+        return monsterCardRepository.findByTypeContaining(type);
     }
 }
