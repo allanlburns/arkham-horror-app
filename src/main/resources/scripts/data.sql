@@ -308,3 +308,19 @@ SELECT * FROM (VALUES
     (20, 'Ruth Turner', 'Human Cultist', '3', '0', '-2', false, NULL, 'Lurker--Place one doom at Hangman''s Hill.', '-', '1', '0', 'Elusive (Ruth does not engage investigators in her space.) After you disengage Ruth, she is defeated.'),
     (21, '"Wolf-Man" Drew', 'Human Cultist', '3', '-1', '0', false, NULL, 'Hunter--Move toward and engage lowest STRENGTH.', '2', '2', '0', 'Feed (After Drew deals damage to an investigator or ally, he recovers that much health.)')
 );
+
+CREATE TABLE IF NOT EXISTS mythos_token (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(255)
+);
+
+INSERT INTO special_monster_card (id, type)
+SELECT * FROM (VALUES
+    (1, 'Spread Doom'),
+    (2, 'Spawn Monster'),
+    (3, 'Read Headline'),
+    (4, 'Spawn Clue'),
+    (5, 'Gate Burst'),
+    (6, 'Reckoning'),
+    (7, 'Blank')
+);
