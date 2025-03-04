@@ -13,6 +13,7 @@ public class GameService {
 
     private Game game;
 
+    @Autowired
     private ArchiveCardService archiveCardService;
 
     @Autowired

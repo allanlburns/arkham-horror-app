@@ -1,5 +1,6 @@
 package allan.org.arkham_horror_app.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -25,6 +26,11 @@ public class Game {
     }
 
     public Game() {
+        this.encounterDeck = new ArrayList<>();
+        this.eventDeck = new ArrayList<>();
+        this.monsterDeck = new ArrayList<>();
+        this.headlineDeck = new ArrayList<>();
+        this.mythosCup = new ArrayList<>();
     }
 
     public int getId() {
