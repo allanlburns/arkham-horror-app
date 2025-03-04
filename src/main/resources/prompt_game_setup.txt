@@ -1,0 +1,18 @@
+I've been working on a Java/Spring Boot app to manage cards and decks of cards for the board game Arkham Horror, 3rd edition.
+
+The main types of cards in the game are Archive Cards, Encounter Cards, Event Cards, Headline Cards, Monster Cards, and I'm also managing a bag full of Mythos tokens that are drawn randomly, similar to shuffling cards and drawing one from the top of the deck.
+
+I've created a class for each card and deck type as well as for the game itself. I've written API endpoints to fetch cards from the database by card type and by individual card name or number.
+
+Now that I have all the necessary resources in the database and endpoints to retrieve them from the db, I need to start on the main method. I need to create a game object, but I'm a little unsure of a few things:
+
+I know in ArkhamHorrorAppApplication's main() method I need to instantiate objects for the game, scenario, codex (codex is the Archive card deck), encounter deck, event deck, monster deck, headline deck, and mythos cup. That seems fairly straightforward, but I'm not sure how to call the endpoints for the resources associated with each object.
+
+For example, if I want to create the codex and add the initial Archive Cards to it (I'll want to be able to add and remove cards to the codex later in the gameplay), and the endpoint is http://localhost:8080/archiveCard/{number}. How will I call that from the main() method, or should I try a different approach? Currently I'm focusing on the methods and endpoints I need to create the game setup upon app startup.
+
+Other points to consider:
+* The different decks are not always homogeneous. One mechanic of discovering "clues" Is that at certain points a card is removed from the Event Deck and shuffled into the top two cards of the corresponding neighborhood deck. Once the clue has been retrieved in game, the event card will go into the Event Deck discard pile. Also, sometimes there are Archive cards that will get shuffled into the top two cards of the Encounter deck. For these, I've created both an Archive card and a corresponding special Encounter Card.
+* The app is currently in its initial phase. It will handle only one game session at a time. Later, I'd like to handle multiple sessions and even be able to save in-progress games in a database table.
+* In the very near future I'm going to start building a React or ReactNative front end application as an interface for the back end, and I'll want to call the endpoints. For now I'm building the logic to set up the game upon app startup and then change the game state via http requests with Postman or through the browser.
+* Right now there is only one game scenario, and I'm hard coding that information into the main() method. As the project develops, I'll add around a dozen other scenarios and dynamically handle the scenario parameters in the game logic. The scenario determines which Archive Cards are added to the codex at the beginning of the game, the neighborhood tiles and corresponding encounter decks for each neighborhood, the 24-card event deck, which monster cards to include in the monster deck
+* Some deck types will need discard piles but not others. The Event Deck and Headline Deck will both have discard piles, and the Mythos Cup will have tokens that will be drawn. In all three cases, periodically these cards/tokens will need to be randomized and added back to their respective collections.

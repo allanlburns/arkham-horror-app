@@ -127,10 +127,23 @@ SELECT * FROM (VALUES
 );
 
 
--- TODO: Change this table to "special". Need to create new table and scheme for them.
---  Add Encounter Cards for Special Archive Cards to encounter_card
+-- Create special_encounter_card table for Archive Cards that get shuffled into Encounter Decks
+CREATE TABLE IF NOT EXISTS special_encounter_card (
+    id SERIAL PRIMARY KEY,
+    number VARCHAR(255),
+    neighborhood VARCHAR(255),
+    location1 VARCHAR(255),
+    location2 VARCHAR(255),
+    location3 VARCHAR(255),
+    gameSet VARCHAR(255),
+    location1Text TEXT,
+    location2Text TEXT,
+    location3Text TEXT
+);
 
-INSERT INTO encounter_card (id, neighborhood, number, location1, location2, location3, location1Text, location2Text, location3Text, gameSet)
+--  Add Special Encounter Cards for Special Archive Cards to special_encounter_card
+
+INSERT INTO special_encounter_card (id, neighborhood, number, location1, location2, location3, location1Text, location2Text, location3Text, gameSet)
 SELECT * FROM (VALUES
     (49, 'Downtown', 'Archive13', 'Arkham Asylum', 'Independence Square', 'La Bella Luna', 'Charles Badoe has an unexpected opening in his schedule. You may spend $1 to recover three sanity. The opening is because one of his patients has escaped...or been set free. Spawn the set-aside "Wolf-Man" Drew monster engaged with you and return this card to the archive.', 'The wagons and stalls of the square''s occasional market are packing up and preparing to leave. You may buy one CURIO item from the display. Soon, you discover why they are leaving. Spawn the set-aside "Wolf-Man" Dean monster engaged with you and return this card to the archive.', 'The high-stakes poker game seems more tense than usual (Test OBSERVATION). If you pass, you exploit the unease the other players feel; you gain $3. Whether you pass or not, a growling man leaps at you outside; spawn the set-aside "Wolf-Man" Dean monster engaged with you and return this card to the archive.', 'Core'),
     (50, 'Easttown', 'Archive14', 'Hibb''s Roadhouse', 'Police Station', 'Velma''s Diner', 'Business is booming. You overhear Old Man Hibbard wondering if Officer Cooper will be by to take his usual bribe "or his pound of flesh." Spawn the set-aside Billy Cooper monster at the police station and return this card to the archive.', 'You share your findings with Sheriff Engle (Test INFLUENCE). If you pass, he offers you some "off-the-books" help; you gain one COMMON item. Whether you pass or not, one particular cop was listening intently; spawn the set-aside Billy Cooper monster at the police station and return this card to the archive.', 'You ask for something without any meat. You may spend $1 recover three health. Velma mentions that a police officer had been by earlier to confiscate all her pork, anyway. Spawn the set-aside Billy Cooper monster at the police station and return this card to the archive.', 'Core'),
