@@ -24,6 +24,9 @@ public class Game {
         this.mythosCup = mythosCup;
     }
 
+    public Game() {
+    }
+
     public int getId() {
         return id;
     }
