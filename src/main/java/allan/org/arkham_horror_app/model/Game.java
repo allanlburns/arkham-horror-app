@@ -8,17 +8,22 @@ public class Game {
 //    String name;
     private String scenario;
     private String scenarioSheet;
-    private List<EncounterCard> encounterDeck;
+    // TODO: Dynamically receive neighborhood names from scenario and name variables based on parpameters
+    private EncounterDeck downtownDeck;
+    private EncounterDeck easttownDeck;
+    private EncounterDeck rivertownDeck;
+    private EncounterDeck southsideDeck;
+    private EncounterDeck uptownDeck;
+    private EncounterDeck streetsDeck;
     private List<EventCard> eventDeck;
     private List<MonsterCard> monsterDeck;
     private List<HeadlineCard> headlineDeck;
     private List<MythosToken> mythosCup;
 
-    public Game(int id, String scenario, String scenarioSheet, List<EncounterCard> encounterDeck, List<EventCard> eventDeck, List<MonsterCard> monsterDeck, List<HeadlineCard> headlineDeck, List<MythosToken> mythosCup) {
+    public Game(int id, String scenario, String scenarioSheet, List<EventCard> eventDeck, List<MonsterCard> monsterDeck, List<HeadlineCard> headlineDeck, List<MythosToken> mythosCup) {
         this.id = id;
         this.scenario = scenario;
         this.scenarioSheet = scenarioSheet;
-        this.encounterDeck = encounterDeck;
         this.eventDeck = eventDeck;
         this.monsterDeck = monsterDeck;
         this.headlineDeck = headlineDeck;
@@ -26,7 +31,12 @@ public class Game {
     }
 
     public Game() {
-        this.encounterDeck = new ArrayList<>();
+        this.downtownDeck = new EncounterDeck("Downtown", new ArrayList<>());
+        this.easttownDeck = new EncounterDeck("Easttown", new ArrayList<>());
+        this.rivertownDeck = new EncounterDeck("Rivertown", new ArrayList<>());
+        this.southsideDeck = new EncounterDeck("Southside", new ArrayList<>());
+        this.uptownDeck = new EncounterDeck("Uptown", new ArrayList<>());
+        this.streetsDeck = new EncounterDeck("The Streets", new ArrayList<>());
         this.eventDeck = new ArrayList<>();
         this.monsterDeck = new ArrayList<>();
         this.headlineDeck = new ArrayList<>();
@@ -49,12 +59,27 @@ public class Game {
         this.scenario = scenario;
     }
 
-    public List<EncounterCard> getEncounterDeck() {
-        return encounterDeck;
+    public EncounterDeck getDowntownDeck() {
+        return downtownDeck;
+    }
+    public EncounterDeck getEasttownDeck() {
+        return easttownDeck;
     }
 
-    public void setEncounterDeck(List<EncounterCard> encounterDeck) {
-        this.encounterDeck = encounterDeck;
+    public EncounterDeck getRivertownDeck() {
+        return rivertownDeck;
+    }
+
+    public EncounterDeck getSouthsideDeck() {
+        return southsideDeck;
+    }
+
+    public EncounterDeck getUptownDeck() {
+        return uptownDeck;
+    }
+
+    public EncounterDeck getStreetsDeck() {
+        return streetsDeck;
     }
 
     public String getScenarioSheet() {
