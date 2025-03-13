@@ -1,4 +1,9 @@
 package allan.org.arkham_horror_app.model;
 
-public class EventDeck extends Deck {
+import java.util.ArrayList;
+
+public class EventDeck extends Deck<EventCard> {
+    public EventDeck() {
+        super();
+    }
 }

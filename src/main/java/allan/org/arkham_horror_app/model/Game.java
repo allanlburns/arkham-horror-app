@@ -15,12 +15,12 @@ public class Game {
     private EncounterDeck southsideDeck;
     private EncounterDeck uptownDeck;
     private EncounterDeck streetsDeck;
-    private List<EventCard> eventDeck;
-    private List<MonsterCard> monsterDeck;
-    private List<HeadlineCard> headlineDeck;
-    private List<MythosToken> mythosCup;
+    private EventDeck eventDeck;
+    private MonsterDeck monsterDeck;
+    private HeadlineDeck headlineDeck;
+    private MythosCup mythosCup;
 
-    public Game(int id, String scenario, String scenarioSheet, List<EventCard> eventDeck, List<MonsterCard> monsterDeck, List<HeadlineCard> headlineDeck, List<MythosToken> mythosCup) {
+    public Game(int id, String scenario, String scenarioSheet, EventDeck eventDeck, MonsterDeck monsterDeck, HeadlineDeck headlineDeck, MythosCup mythosCup) {
         this.id = id;
         this.scenario = scenario;
         this.scenarioSheet = scenarioSheet;
@@ -37,10 +37,10 @@ public class Game {
         this.southsideDeck = new EncounterDeck("Southside", new ArrayList<>());
         this.uptownDeck = new EncounterDeck("Uptown", new ArrayList<>());
         this.streetsDeck = new EncounterDeck("The Streets", new ArrayList<>());
-        this.eventDeck = new ArrayList<>();
-        this.monsterDeck = new ArrayList<>();
-        this.headlineDeck = new ArrayList<>();
-        this.mythosCup = new ArrayList<>();
+        this.eventDeck = new EventDeck();
+        this.monsterDeck = new MonsterDeck();
+        this.headlineDeck = new HeadlineDeck();
+        this.mythosCup = new MythosCup();
     }
 
     public int getId() {
@@ -90,35 +90,35 @@ public class Game {
         this.scenarioSheet = scenarioSheet;
     }
 
-    public List<EventCard> getEventDeck() {
+    public EventDeck getEventDeck() {
         return eventDeck;
     }
 
-    public void setEventDeck(List<EventCard> eventDeck) {
+    public void setEventDeck(EventDeck eventDeck) {
         this.eventDeck = eventDeck;
     }
 
-    public List<MonsterCard> getMonsterDeck() {
+    public MonsterDeck getMonsterDeck() {
         return monsterDeck;
     }
 
-    public void setMonsterDeck(List<MonsterCard> monsterDeck) {
+    public void setMonsterDeck(MonsterDeck monsterDeck) {
         this.monsterDeck = monsterDeck;
     }
 
-    public List<HeadlineCard> getHeadlineDeck() {
+    public HeadlineDeck getHeadlineDeck() {
         return headlineDeck;
     }
 
-    public void setHeadlineDeck(List<HeadlineCard> headlineDeck) {
+    public void setHeadlineDeck(HeadlineDeck headlineDeck) {
         this.headlineDeck = headlineDeck;
     }
 
-    public List<MythosToken> getMythosCup() {
+    public MythosCup getMythosCup() {
         return mythosCup;
     }
 
-    public void setMythosCup(List<MythosToken> mythosCup) {
+    public void setMythosCup(MythosCup mythosCup) {
         this.mythosCup = mythosCup;
     }
 }

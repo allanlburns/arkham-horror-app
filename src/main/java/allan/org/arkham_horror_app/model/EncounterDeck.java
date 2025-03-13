@@ -4,14 +4,10 @@ import java.util.List;
 
 public class EncounterDeck extends Deck {
     String neighborhood;
-    List<Card> cards;
 
     public EncounterDeck(String neighborhood, List<Card> cards) {
+        super(cards);
         this.neighborhood = neighborhood;
-        this.cards = cards;
-    }
-
-    public EncounterDeck() {
     }
 
     public String getNeighborhood() {
@@ -20,13 +16,5 @@ public class EncounterDeck extends Deck {
 
     public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
-    }
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
     }
 }
