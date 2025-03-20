@@ -29,4 +29,8 @@ public class Deck<T extends Card> {
     public void addAll(List<EventCard> newCards) {
         this.cards.addAll(newCards);
     }
+
+    public T drawFromTop() {
+        return cards.isEmpty() ? null : (T) cards.remove(0);
+    }
 }
