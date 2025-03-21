@@ -16,6 +16,10 @@ public class EventDeck extends Deck<EventCard> {
         return super.drawFromTop();
     }
 
+    public EventCard drawFromBottom() {
+        return super.drawFromBottom();
+    }
+
     public List<EventCard> getDiscardPile() {
         return discardPile;
     }

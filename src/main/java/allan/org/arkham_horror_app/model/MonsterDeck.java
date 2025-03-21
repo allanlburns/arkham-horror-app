@@ -6,4 +6,8 @@ public class MonsterDeck extends Deck {
     public MonsterDeck() {
         super();
     }
+
+    public MonsterCard drawFromBottom() {
+        return (MonsterCard) super.drawFromBottom();
+    }
 }

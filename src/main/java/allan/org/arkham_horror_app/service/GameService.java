@@ -5,9 +5,7 @@ import allan.org.arkham_horror_app.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class GameService {
@@ -37,6 +35,26 @@ public class GameService {
 
     @Autowired
     private MythosRepository mythosTokenRepository;
+
+    // Declare variables for drawn card types:
+
+    // === Encounter Cards ===
+    // Use a map to track the last drawn card per neighborhood
+    private final Map<String, Card> lastEncounterCardsDrawn = new HashMap<>();
+
+    // === Event Cards ===
+    private EventCard lastEventCardDrawnFromTop;
+    private EventCard lastEventCardDrawnFromBottom;
+
+    // === Headline Cards ===
+    private HeadlineCard lastHeadlineCardDrawn;
+
+    // === Monster Cards ===
+    // TODO: Make Monster Card variable track multiple drawn Monsters
+    private MonsterCard lastMonsterCardDrawn;
+
+    // === Mythos Tokens ===
+    private MythosToken lastMythosTokenDrawn;
 
 
     public void initializeGame() {
@@ -73,7 +91,7 @@ public class GameService {
         game.getHeadlineDeck().addAll(selectedHeadlines);
 
         game.getMonsterDeck().addAll(monsterCardRepository.findAll());
-        game.getMythosCup().addAll(mythosTokenRepository.findAll());
+        game.getMythosCup().addTokens(mythosTokenRepository.findAll());
 
         // Shuffle all decks by chaining .shuffle()
         for (EncounterDeck deck : game.getEncounterDecks().values()) {
@@ -92,12 +110,76 @@ public class GameService {
     }
 
     public Card drawEncounterCard(String neighborhood) {
-        EncounterDeck deck = game.getEncounterDeck(neighborhood);
-        return deck.getCards().isEmpty() ? null : deck.getCards().remove(0);
+        Card card = game.getEncounterDeck(neighborhood).drawFromTop();
+        lastEncounterCardsDrawn.put(neighborhood, card);
+        return card;
     }
 
-    public void placeEncounterCardOnBottom(String neighborhood, Card card) {
-        game.getEncounterDeck(neighborhood).getCards().add(card);
+    public void placeEncounterCardOnBottom(String neighborhood) {
+        Card lastCard = lastEncounterCardsDrawn.get(neighborhood);
+        if (lastCard != null) {
+            game.getEncounterDeck(neighborhood).getCards().add(lastCard);
+            lastEncounterCardsDrawn.remove(neighborhood);
+        } else {
+            throw new IllegalStateException("No Encounter card drawn from " + neighborhood);
+        }
+    }
+
+    public EventCard drawEventCardFromTop() {
+        lastEventCardDrawnFromTop = game.getEventDeck().drawFromTop();
+        return lastEventCardDrawnFromTop;
+    }
+
+    public EventCard drawEventCardFromBottom() {
+        lastEventCardDrawnFromBottom = game.getEventDeck().drawFromBottom();
+        return lastEventCardDrawnFromBottom;
+    }
+
+    public void discardEventCardFromTop() {
+        if (lastEventCardDrawnFromTop != null) {
+            game.getEventDeck().discard(lastEventCardDrawnFromTop);
+            lastEventCardDrawnFromTop = null;
+        }
+    }
+
+    public MonsterCard drawMonsterCard() {
+        lastMonsterCardDrawn = game.getMonsterDeck().drawFromBottom();
+        return lastMonsterCardDrawn;
+    }
+
+    public void returnMonsterToTop() {
+        if (lastMonsterCardDrawn != null) {
+            game.getMonsterDeck().getCards().add(0, lastMonsterCardDrawn);
+            lastMonsterCardDrawn = null;
+        }
+    }
+
+    public HeadlineCard drawHeadlineCard() {
+        lastHeadlineCardDrawn = (HeadlineCard) game.getHeadlineDeck().drawFromTop();
+        return lastHeadlineCardDrawn;
+    }
+
+    public void placeHeadlineCardOnBottom() {
+        if (lastHeadlineCardDrawn != null) {
+            game.getHeadlineDeck().getCards().add(lastHeadlineCardDrawn);
+            lastHeadlineCardDrawn = null;
+        }
+    }
+
+    public MythosToken drawMythosToken() {
+        lastMythosTokenDrawn = game.getMythosCup().drawToken();
+        return lastMythosTokenDrawn;
+    }
+
+    public void discardMythosToken() {
+        if (lastMythosTokenDrawn != null) {
+            game.getMythosCup().getDiscardPile().add(lastMythosTokenDrawn);
+            lastMythosTokenDrawn = null;
+        }
+    }
+
+    public void resetMythosCup() {
+        game.getMythosCup().reshuffleDiscardIntoCup();
     }
 
     public Card getCardById(Long cardId) {
