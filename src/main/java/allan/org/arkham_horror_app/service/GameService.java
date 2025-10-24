@@ -36,7 +36,7 @@ public class GameService {
     @Autowired
     private MythosRepository mythosTokenRepository;
 
-    // Declare variables for drawn card types:
+    // Declare variables for each card type:
 
     // === Encounter Cards ===
     // Use a map to track the last drawn card per neighborhood
@@ -68,8 +68,9 @@ public class GameService {
 
         // Fetch initial Archive Cards for the Codex
         // TODO: Add specific Archive Cards to list, by number
-//        List<ArchiveCard> initialCodexCards = archiveCardRepository.findByScenario("default-scenario");
-//        game.getCodex().addAll(initialCodexCards);
+        List<ArchiveCard> startingArchiveCards = archiveCardRepository.findAllById(Arrays.asList(1L, 10L, 11L));
+        game.getCodex().addAll(startingArchiveCards);
+
         archiveCardService.addToCodex(1);
         archiveCardService.addToCodex(10);
         archiveCardService.addToCodex(11);
@@ -142,11 +143,14 @@ public class GameService {
         }
     }
 
+    // TODO: Need method to shuffle drawn Event card into top two cards of associated Encounter deck. GitHub issue #7.
+
     public MonsterCard drawMonsterCard() {
         lastMonsterCardDrawn = game.getMonsterDeck().drawFromBottom();
         return lastMonsterCardDrawn;
     }
 
+    // TODO: Parameterize the monster with name once game can track multiple drawn monsters. GitHub issue #5.
     public void returnMonsterToTop() {
         if (lastMonsterCardDrawn != null) {
             game.getMonsterDeck().getCards().add(0, lastMonsterCardDrawn);
@@ -186,7 +190,7 @@ public class GameService {
         // Search in all Encounter Decks
         for (EncounterDeck deck : game.getEncounterDecks().values()) {
             for (Card card : deck.getCards()) {
-                if (card.getId() == cardId) {
+                if (cardId != null && cardId.equals(card.getId())) {
                     return card;
                 }
             }

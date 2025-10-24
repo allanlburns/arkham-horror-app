@@ -27,14 +27,13 @@ public class GameController {
 //        return new ResponseEntity<>(gameService.addToCodex(archiveCardNumber), HttpStatus.OK);
 //    }
 
+    // === Encounter Decks ===
     @PostMapping("/encounterDeck/draw/{neighborhood}")
     public ResponseEntity<Card> drawEncounterCard(@PathVariable String neighborhood) {
         Card drawnCard = gameService.drawEncounterCard(neighborhood);
         return drawnCard != null ? ResponseEntity.ok(drawnCard) :
                 ResponseEntity.notFound().build();
     }
-
-    // === Encounter Decks ===
 
     @PostMapping("/encounterDeck/placeBottom/{neighborhood}")
     public ResponseEntity<String> placeEncounterCardOnBottom(@PathVariable String neighborhood) {
@@ -45,6 +44,8 @@ public class GameController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // TODO: Need Controller/Service methods to discard Encounter Card to bottom of its deck
 
 
     // === Event Deck ===
@@ -59,7 +60,7 @@ public class GameController {
         return ResponseEntity.ok(gameService.drawEventCardFromBottom());
     }
 
-    // TODO: Change this to discard from Bottom. Top of Event Deck only discards when Gate Burst is drawn.
+    // TODO: Add Controller and Service method to discard from Bottom. GitHub Issue #6. Top of Event Deck only discards when Gate Burst is drawn.
     @PostMapping("/eventDeck/discardFromTop")
     public ResponseEntity<String> discardEventCardFromTop() {
         try {

@@ -1,4 +1,4 @@
 package allan.org.arkham_horror_app.model;
 
-public class Codex {
+public class Codex extends Deck<ArchiveCard> {
 }

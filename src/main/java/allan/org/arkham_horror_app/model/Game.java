@@ -15,6 +15,7 @@ public class Game {
     private MonsterDeck monsterDeck;
     private HeadlineDeck headlineDeck;
     private MythosCup mythosCup;
+    private Codex codex;
 
     // add params to constructor once Scenario details are dynamic in GameService:
     // EventDeck eventDeck, MonsterDeck monsterDeck, HeadlineDeck headlineDeck, MythosCup mythosCup
@@ -33,6 +34,8 @@ public class Game {
         this.monsterDeck = new MonsterDeck();
         this.headlineDeck = new HeadlineDeck();
         this.mythosCup = new MythosCup();
+
+        this.codex = new Codex();
     }
 
     public Game() {
@@ -41,9 +44,17 @@ public class Game {
         this.monsterDeck = new MonsterDeck();
         this.headlineDeck = new HeadlineDeck();
         this.mythosCup = new MythosCup();
+
+        this.codex = new Codex();
     }
 
+    public Codex getCodex() {
+        return codex;
+    }
 
+    public void setCodex(Codex codex) {
+        this.codex = codex;
+    }
 
     public int getId() {
         return id;
